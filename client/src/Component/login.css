@@ -1,36 +1,44 @@
 /* Base styles */
+body,
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #18191c;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+}
+
 .login-container {
-  width:100%;
-  /* max-width: 1200px; */
+  width: 100%;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin-top: 1px;
-  /* background: rgba(0, 0, 0, 0.9); Semi-transparent black background */
-  background: url("./home.avif") no-repeat center center fixed;
-
   font-family: Arial, sans-serif;
   color: #fff;
+  background: rgb(24, 25, 28);
 }
 
 .login-form {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
-  padding: 20px;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 50px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: 100%;
-  margin-top: 0;
   max-width: 400px;
   text-align: center;
 }
 
 .login-form h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 40px;
+  margin-right: 10px;
+  padding: 5px;
   text-align: left;
 }
 
@@ -42,28 +50,22 @@
 
 .form-group input {
   width: 100%;
-  padding: 10px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background: rgba(
-    255,
-    255,
-    255,
-    0.2
-  ); /* Semi-transparent white background for inputs */
+  background: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 
 button[type="submit"] {
-  width: 100%;
+  width: 45%;
   padding: 10px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 button[type="submit"]:hover {
@@ -71,21 +73,28 @@ button[type="submit"]:hover {
 }
 
 .google-login {
-  margin-top: 20px;
+  margin: auto;
+  margin-top: 15px;
+  width: 200px;
+  height: 2.5rem;
+  border: none;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
 }
 
 .google-login button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 200px;
   padding: 10px;
   background-color: #db4437;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .google-login button:hover {
@@ -93,9 +102,19 @@ button[type="submit"]:hover {
 }
 
 .google-logo {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  width: 35px;
+  height: 35px;
+  margin-top: 9px;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.gTab {
+  margin-top: 8.5px;
+  justify-content: flex-end;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /* Responsive design */

@@ -25,6 +25,7 @@ const SignUp = () => {
                         <input type="password" id="password" name="password" required />
                     </div>
                     <button type="submit" onClick = {handleChanged}>Sign Up</button>
+                    <p  className='lTab'>Already Have Account? <a href="/login">Click for login</a></p>
                 </form>
             </div>
         </div>

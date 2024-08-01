@@ -94,6 +94,15 @@ app.get(
     failureFlash: true,
   })
 );
+
+app.get('/login/succes', async(req,res)=>{
+  if (req.user) {
+    res.status(200).json({message: "User Login Successfully" , user: req.user});
+  }
+  else{
+    res.status(400).json({error: "Not Authorized !"})
+  }
+})
 // app.use("/api/data", authRoutes);
 app.post("/login", (req, res ,next) => {
   try {
