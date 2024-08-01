@@ -1,0 +1,116 @@
+/* Base styles */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: 1px;
+  background: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
+  background: url("./home.avif") no-repeat center center fixed;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.signup-form {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.signup-form h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Semi-transparent white background for inputs */
+  color: #fff;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.google-login {
+  margin-top: 20px;
+}
+
+.google-login button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #db4437;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.google-login button:hover {
+  background-color: #c23321;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+  .signup-form {
+    padding: 15px;
+  }
+
+  .form-group input {
+    padding: 8px;
+  }
+
+  button[type="submit"],
+  .google-login button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .google-logo {
+    width: 18px;
+    height: 18px;
+  }
+}

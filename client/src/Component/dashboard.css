@@ -1,0 +1,60 @@
+/* Base styles */
+.dashboard-container {
+  width: 100%;
+  /* max-width: 1200px; */
+  height: 100vh;
+  margin: auto;
+  margin-top: 1px;
+  padding: 20px;
+  background: url("./home.avif") no-repeat center center fixed;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.dashboard-container h2 {
+  text-align: center; 
+}
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin:auto;
+}
+
+.card p {
+  margin: auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}
