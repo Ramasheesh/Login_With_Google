@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -9,26 +9,28 @@ const userModel = require("./models/userModel");
 const session = require("express-session");
 const passport = require("passport");
 const Oauth2Strategy = require("passport-google-oauth2").Strategy;
-const client_Id =process.env.ID;
-const client_Secret =process.env.SECRET ;
-
+const client_Id = process.env.ID;
+const client_Secret = process.env.SECRET;
+const bodyParser = require('body-parser');
 
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST",'PUT',"DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
 app.use(express.json());
-
+app.use(bodyParser.json());
 //setup seesion
 app.use(
   session({
     secret: "session/secre/${myloginpage}/123123321321",
     resave: false,
     saveUninitialized: true,
+    // saveUninitialized: false,
+    cookie: { secure: false }
   })
 );
 
@@ -38,7 +40,7 @@ app.use(passport.session());
 
 // use id's
 function generatePassword(email, name) {
-  const emailPart = email.split('@')[0].slice(0, 4);
+  const emailPart = email.split("@")[0].slice(0, 4);
   const namePart = name.slice(0, 4);
   const password = emailPart + namePart + "123";
   return password;
@@ -62,12 +64,10 @@ passport.use(
             name: profile.displayName,
             email: profile.email,
             image: profile.photos[0].value,
-            password:  generatePassword(profile.email, profile.family_name)
+            password: generatePassword(profile.email, profile.family_name),
           });
         }
-        await user.save(user)
-        // console.log('user: ', user);
-
+        await user.save(user);
         return done(null, user); //done is callback dunction
       } catch (error) {
         return done(error, null);
@@ -77,10 +77,10 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user);
 });
 passport.deserializeUser((id, done) => {
-  done(null,  { id });
+  done(null, { id });
 });
 app.get(
   "/auth/google",
@@ -89,61 +89,75 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/",
+    successRedirect: "http://localhost:3000/dashboard",
     failureRedirect: "http://localhost:3000/login",
     failureFlash: true,
   })
 );
 
-app.get('/login/succes', async(req,res)=>{
+app.get("/login/success", (req, res) => {
+  // console.log("req.user: ", req.user);
   if (req.user) {
-    res.status(200).json({message: "User Login Successfully" , user: req.user});
+    res
+      .status(200)
+      .json({ message: "User Login Successfully", user: req.user });
+  } else {
+    res.status(404).json({ error: "Not Authorized !" });
   }
-  else{
-    res.status(400).json({error: "Not Authorized !"})
-  }
+});
+// logout
+
+app.get('/logout' , (req,res , next)=>{
+  req.logout(function (err) {
+    if(err){ return next(err)}
+    res.redirect('http://localhost:3000/login');
+  })
 })
-// app.use("/api/data", authRoutes);
-app.post("/login", (req, res ,next) => {
+
+
+// app.use("/api/data", authRoutes); 
+
+
+//login
+app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = userModel.find({ email: email, password: password });
+    const user = await userModel.findOne({ email, password }).exec();
+    // console.log('user: ', user);
 
     if (user) {
-      res.status(200).json({ message: "Login successful" });
+       res.status(200).json({ message: "Login successful", user });
     } else {
-      res.status(401).json({ message: "Invalid credentials" });
+       res.status(401).json({ message: "Invalid credentials" });
     }
-    next();
   } catch (error) {
-    res.status(401).json({ error: "internal server error!" });
+    return res.status(500).json({ error: "Internal server error!" }); 
   }
 });
 
-// Controller for signup
-app.post("/signup", (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
-    const { email } = req.body;
+    const { name, email, password } = req.body; 
 
     if (name && email && password) {
-      // Check if user already exists
-      const existingUser = userModel.find({ email });
+      const existingUser = await userModel.findOne({ email }).exec();
+      // console.log('existingUser: ', existingUser);
+
       if (existingUser) {
-        res.status(409).json({ message: "User already exists" });
+         res.status(409).json({ message: "User already exists" });
       } else {
-        const newUser = { name, email, password };
-        users.push(newUser);
-        res.status(201).json({ message: "Signup successful", user: newUser });
+        const newUser = new userModel({ name, email, password }); 
+        await newUser.save(); 
+         res.status(201).json({ message: "Signup successful", user: newUser });
       }
     } else {
-      res.status(400).json({ message: "All fields are required" });
+      return res.status(400).json({ message: "Missing required fields" }); 
     }
   } catch (error) {
-    res.status(401).json({ error: "internal server error!" });
+    return res.status(500).json({ error: "Internal server error!" }); 
   }
 });
-
 // Placeholder data for demonstration purposes
 
 app.listen(port, (req, res) => {

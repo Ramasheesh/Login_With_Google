@@ -4,8 +4,8 @@ import './signup.css';
 const SignUp = () => {
     const handleChanged = () => {
         // Implement Google login functionality here
-        console.log("Google login clicked");
-        // window.open('http://localhost:4000/dashboard')
+        // console.log("Google login clicked");
+        window.open('http://localhost:3000/login')
     };
     return (
         <div className="signup-container">

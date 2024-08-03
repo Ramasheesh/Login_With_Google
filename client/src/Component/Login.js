@@ -8,6 +8,9 @@ const Login = () => {
     window.open("http://localhost:4000/auth/google/callback", "_self");
   };
 
+  const raindomLogin =()=>{
+    window.open("http://localhost:3000/dashboard");
+  }
   return (
     <div className="login-container">
       <div className="login-form">
@@ -21,7 +24,7 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" required />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" onClick={ raindomLogin} >Login</button>
         </form>
         <button className="google-login" onClick={handleGoogleLogin}>
           <img src={googleLoogo} alt="Google logo" className="google-logo" />
