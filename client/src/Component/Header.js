@@ -15,7 +15,7 @@ const Header = () => {
       let data = response.data.user;
       setUserdata(data);
     } catch (error) {
-      console.error("Error fetching user data:", error);
+      console.error("Error fetching userdata:", error);
     }
   };
 

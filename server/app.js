@@ -98,11 +98,11 @@ app.get(
 app.get("/login/success", (req, res) => {
   // console.log("req.user: ", req.user);
   if (req.user) {
-    res
+   return res
       .status(200)
       .json({ message: "User Login Successfully", user: req.user });
   } else {
-    res.status(404).json({ error: "Not Authorized !" });
+   return res.status(404).json({ error: "Not Authorized !" });
   }
 });
 // logout
@@ -135,21 +135,21 @@ app.post("/login", async (req, res) => {
     return res.status(500).json({ error: "Internal server error!" }); 
   }
 });
-
-app.post("/signup", async (req, res) => {
+ 
+app.post("/signup/success", async (req, res) => {
   try {
     const { name, email, password } = req.body; 
 
     if (name && email && password) {
       const existingUser = await userModel.findOne({ email }).exec();
-      // console.log('existingUser: ', existingUser);
+      console.log('existingUser: ', existingUser);
 
       if (existingUser) {
-         res.status(409).json({ message: "User already exists" });
+        return res.status(409).json({ message: "User already exists" });
       } else {
         const newUser = new userModel({ name, email, password }); 
         await newUser.save(); 
-         res.status(201).json({ message: "Signup successful", user: newUser });
+        return res.status(201).json({ message: "Signup successful", user: newUser });
       }
     } else {
       return res.status(400).json({ message: "Missing required fields" }); 

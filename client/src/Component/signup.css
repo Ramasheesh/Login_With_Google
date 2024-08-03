@@ -116,7 +116,7 @@ button[type="submit"]:hover {
 }
 
 /* Responsive design */
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .signup-form {
     padding: 15px;
   }
@@ -135,4 +135,4 @@ button[type="submit"]:hover {
     width: 18px;
     height: 18px;
   }
-}
+} */
