@@ -4,7 +4,7 @@ const Error = () => {
     const errorStyle = {
         color: 'red',
         textAlign: 'center',
-        marginTop: '20px',
+        marginTop: '60px',
         padding: '10px',
         fontSize: '1.5rem', // Default font size
         '@media (max-width: 768px)': { // Tablet and smaller devices
