@@ -1,0 +1,140 @@
+/* Base styles */
+body,
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #18191c;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+}
+
+.login-container {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background: rgb(24, 25, 28);
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 40px;
+  margin-right: 10px;
+  padding: 5px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.form-group input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+button[type="submit"] {
+  width: 45%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.google-login {
+  margin: auto;
+  margin-top: 15px;
+  width: 200px;
+  height: 2.5rem;
+  border: none;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
+}
+
+.google-login button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  padding: 10px;
+  background-color: #db4437;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.google-login button:hover {
+  background-color: #c23321;
+}
+
+.google-logo {
+  width: 35px;
+  height: 35px;
+  margin-top: 9px;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.gTab {
+  margin-top: 8.5px;
+  justify-content: flex-end;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+  .login-form {
+    padding: 15px;
+  }
+
+  .form-group input {
+    padding: 8px;
+  }
+
+  button[type="submit"],
+  .google-login button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .google-logo {
+    width: 18px;
+    height: 18px;
+  }
+}
